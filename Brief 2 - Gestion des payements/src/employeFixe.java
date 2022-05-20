@@ -1,6 +1,3 @@
-
-import java.util.Date;
-
 public class employeFixe  extends employe{
 	
 	public employeFixe(String firstname, String lastname, double salaire,  String strDate) {

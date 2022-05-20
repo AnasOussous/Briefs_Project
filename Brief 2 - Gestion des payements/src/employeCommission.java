@@ -1,15 +1,6 @@
-
-
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Scanner;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-
 public class employeCommission  extends employe{
-	 private int quantite_Vendeur=200;
-	 private double commission_Vendeur=0.5;
+	 private int quantite_Vendeur=300;
+	 private double commission_Vendeur=0.3;
 	
 	
 	public employeCommission(String firstname, String lastname, double salaire, String strDate) {
@@ -21,6 +12,7 @@ public class employeCommission  extends employe{
 
 	@Override
 	public double calculerSalaire() {	
+		
 	return super.getSalaire()+(quantite_Vendeur*commission_Vendeur);
 		  
 	}

@@ -1,14 +1,16 @@
-
-
 public class employeHoraire  extends employe {
-	private int  nombreHeure=24;
-	private double tauxHoraire=50;
+	private int  nombreHeure=70;
+	private double tauxHoraire=100;
+	
+	
+	
+	
 
 	public employeHoraire(String firstname, String lastname, double salaire, String strDate) {
 		super(firstname, lastname, salaire, strDate);
 		
 	}
-
+	
 	@Override
 	public double calculerSalaire() {
 		
