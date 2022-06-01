@@ -1,0 +1,5 @@
+Le projet « Pharmalique » est une application  web qui permet  à l’Administrateur 
+la création des comptes agent ainsi que la vente des produits médicaux et la gestion 
+de stock (ajouter, supprimer, modifier la liste des médicaments....).
+Aussi, permet-elle au client d’acheter un médicament avec ou sans ordonnance, 
+de la vérifier auprès d’un agent pharmaceutique qui se charge également de la vente des produits.
