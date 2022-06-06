@@ -12,7 +12,7 @@ import java.util.List;
 public class carDaoImp implements carDao{
 
 	@Override
-	public void createCar(car Car) {
+	public void createCar(car Car, String MAT,String COME_NOM, double KM, String MANIFACT, double PRICE, int IDCATG) {
 		String SQL = "INSERT INTO Car(Matricule,Com_Name,Kilometrage,ManiFacture,Price,Id_Catg) VALUES(?,?,?,?,?,?)";
 		try(
 				Connection connection = ConnectDB.getConnection();
@@ -157,7 +157,7 @@ public class carDaoImp implements carDao{
 	}
 
 	@Override
-	public void createCategory(category Category) {
+	public void createCategory(category Category, int IDCATG,String NOM_CATG) {
 		String SQL = "INSERT INTO Category(id_Catg,Nom_Catg) VALUES(?,?)";
 		try(
 				Connection connection = ConnectDB.getConnection();
