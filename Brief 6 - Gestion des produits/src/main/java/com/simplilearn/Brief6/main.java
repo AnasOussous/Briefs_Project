@@ -76,11 +76,11 @@ public class main {
 		case 2:
 
 			System.out.println("choisir entre \n\t1- Create Car \n\t2- Show All Cars \n\t3- Show One Car "
-					+"\n\t4- Show Cars By One Category \n\t5- Update Price Of Car \n\t0- Delete Car");
+					+"\n\t4- Show Cars By One Category \n\t5- Update Price Of Car \n\t6- Delete Car");
 			int CRUD2 = input.nextInt();
-			while (CRUD2 !=1 && CRUD2 !=2 && CRUD2 != 3 && CRUD2 != 4 && CRUD2 != 5 ) {
+			while (CRUD2 !=1 && CRUD2 !=2 && CRUD2 != 3 && CRUD2 != 4 && CRUD2 != 5 && CRUD2 != 6 ) {
 				System.out.println("choisir entre \n\t1- Create Car \n\t2- Show All Cars \n\t3- Show One Car "
-						+"\n\t4- Show Cars By One Category \n\t5- Update Price Of Car \n\t0- Delete Car");
+						+"\n\t4- Show Cars By One Category \n\t5- Update Price Of Car \n\t6- Delete Car");
 				int CRUD3 = input.nextInt();
 				CRUD2 = CRUD3;
 			}
