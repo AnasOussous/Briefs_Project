@@ -46,4 +46,15 @@ public class User {
     public void setPsw(String psw) {
         this.psw = psw;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id_User=" + id_User +
+                ", name_User='" + name_User + '\'' +
+                ", prenom_User='" + prenom_User + '\'' +
+                ", username='" + username + '\'' +
+                ", psw='" + psw + '\'' +
+                '}';
+    }
 }
