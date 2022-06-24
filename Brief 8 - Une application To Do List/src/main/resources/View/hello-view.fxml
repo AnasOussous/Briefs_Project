@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="678.0" style="-fx-background-color: #ff5a3d;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.HelloController">
+   <children>
+      <TableView fx:id="table" layoutX="38.0" layoutY="206.0" onMouseClicked="#handleMouseAction" prefHeight="222.0" prefWidth="602.0">
+        <columns>
+          <TableColumn fx:id="title" prefWidth="99.199951171875" text="Title" />
+            <TableColumn fx:id="description" prefWidth="188.00001525878906" text="Description" />
+            <TableColumn fx:id="tblstatue" prefWidth="98.4000244140625" text="Statue" />
+            <TableColumn fx:id="deadline" prefWidth="135.199951171875" text="Deadline" />
+            <TableColumn fx:id="tblcategory" text="Category" />
+        </columns>
+      </TableView>
+      <Pane layoutX="38.0" layoutY="25.0" prefHeight="171.0" prefWidth="602.0" style="-fx-background-radius: 5px; -fx-background-color: #bdbfbe;">
+         <children>
+            <TextField fx:id="txtd" layoutX="22.0" layoutY="14.0" promptText="Id" />
+            <Button fx:id="btnCreate" layoutX="96.0" layoutY="126.0" mnemonicParsing="false" onAction="#CreateTache" prefHeight="37.0" prefWidth="89.0" style="-fx-background-color: #ff5a3d; -fx-border-color: black; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-cursor: hand;" text="Create">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="btnDelete" layoutX="250.0" layoutY="128.0" mnemonicParsing="false" onAction="#deleteTache" prefHeight="37.0" prefWidth="75.0" style="-fx-background-color: #ff5a3d; -fx-border-color: black; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-cursor: hand;" text="Delete">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="btnUpdate" layoutX="379.0" layoutY="128.0" mnemonicParsing="false" onAction="#UpdateTache" prefHeight="37.0" prefWidth="75.0" style="-fx-background-color: #ff5a3d; -fx-border-color: black; -fx-background-radius: 5px; -fx-border-radius: 5px; -fx-cursor: hand;" text="Modify">
+               <font>
+                  <Font name="Arial Rounded MT Bold" size="15.0" />
+               </font></Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

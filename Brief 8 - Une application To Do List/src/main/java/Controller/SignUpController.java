@@ -1,6 +1,6 @@
 package Controller;
 
-import Model.AuthDAOImp;
+import DAO.AuthDAOImp;
 import Model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

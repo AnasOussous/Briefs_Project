@@ -1,20 +1,18 @@
-package Model;
+package DAO;
 
-import Controller.SignInController;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import DAO.AuthDAO;
+import Model.ConnectDB;
+import Model.User;
 import javafx.scene.control.Alert;
-import javafx.stage.Stage;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class AuthDAOImp implements AuthDAO{
+public class AuthDAOImp implements AuthDAO {
     @Override
-    public void SignIn(String username,String psw) {
+    public void SignIn(String username, String psw) {
         String SQL = "Select * From users WHERE username=? and psw=?";
         ResultSet rs = null;
         try {
@@ -42,7 +40,6 @@ public class AuthDAOImp implements AuthDAO{
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
             }
-
     }
 
     @Override
