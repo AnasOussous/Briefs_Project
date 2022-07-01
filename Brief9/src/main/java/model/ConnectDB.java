@@ -1,12 +1,9 @@
-package model;
+package Model;
 
 import java.sql.*;
 
-
-
 public class ConnectDB {
-	
-    private static final String DB_DRIVER="org.postgresql.Driver";
+	private static final String DB_DRIVER="org.postgresql.Driver";
     private static final String DB_USERNAME="postgres";
     private static final String DB_PASSWORD="1235";
     private static final String DB_URL ="jdbc:postgresql://localhost:5432/Brief8";

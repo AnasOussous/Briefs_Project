@@ -1,4 +1,4 @@
-package model;
+package Model;
 
 public class User {
 	
@@ -36,16 +36,16 @@ public class User {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public String setUsername(String username) {
+        return this.username = username;
     }
 
     public String getPsw() {
         return psw;
     }
 
-    public void setPsw(String psw) {
-        this.psw = psw;
+    public String setPsw(String psw) {
+        return this.psw = psw;
     }
 
     @Override
@@ -58,4 +58,5 @@ public class User {
                 ", psw='" + psw + '\'' +
                 '}';
     }
+
 }

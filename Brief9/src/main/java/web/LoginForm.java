@@ -1,33 +1,26 @@
 package web;
 
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import DAO.AuthDAOImp;
-import model.User;
+import Model.User;
 
-
-@WebServlet("/loginForm")
 public class LoginForm extends HttpServlet {
 	public AuthDAOImp authDAOImp = new AuthDAOImp();
-	//public User user = new User();
 	private static final long serialVersionUID = 1L;
        
-
     public LoginForm() {
         super();
-        // TODO Auto-generated constructor stub
+        
     }
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		String Username = request.getParameter("user");
 		String Password = request.getParameter("password");
 		String submitBtn = request.getParameter("submit");
@@ -53,7 +46,6 @@ public class LoginForm extends HttpServlet {
 		}}catch (Exception e) {
 			System.out.println("svsvs");
 		}
-
 	}
 
 }

@@ -1,9 +1,9 @@
 package DAO;
 
-import model.User;
+import Model.User;
 
 public interface AuthDAO {
-	public abstract User SignIn(String username, String psw);
+	public abstract boolean SignIn(String username, String psw);
 
     public abstract void SignUp(User user);
 }

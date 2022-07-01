@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Login</title>
+<title>Insert title here</title>
 <link rel="stylesheet" href="login.css">
 </head>
 <body>
-	<div class="center">
+		<div class="center">
           <h1>SignUp</h1>
           <form action="loginForm" method="post">
           	  <div class="txt_field">
