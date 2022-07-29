@@ -59,7 +59,7 @@
          AJP  Connector: /docs/config/ajp.html
          Define a non-SSL/TLS HTTP/1.1 Connector on port 8080
     -->
-    <Connector connectionTimeout="20000" port="8080" protocol="HTTP/1.1" redirectPort="8443"/>
+    <Connector connectionTimeout="20000" port="8888" protocol="HTTP/1.1" redirectPort="8443"/>
     <!-- A "Connector" using the shared thread pool-->
     <!--
     <Connector executor="tomcatThreadPool"
@@ -134,7 +134,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="kickit-ctb" path="/brief9-javaweb-todo" reloadable="true" source="org.eclipse.jst.jee.server:kickit-ctb"/></Host>
+      <Context docBase="kickit-ctb" path="/brief9-javaweb-todo" reloadable="true" source="org.eclipse.jst.jee.server:kickit-ctb"/><Context docBase="thymeleafexamples-gtvg" path="/gtvg" reloadable="true" source="org.eclipse.jst.jee.server:thymeleafexamples-gtvg"/><Context docBase="session" path="/session" reloadable="true" source="org.eclipse.jst.jee.server:session"/><Context docBase="Brief-10" path="/Brief-10" reloadable="true" source="org.eclipse.jst.jee.server:Brief-10"/><Context docBase="brief10-employees-manager" path="/fyajo3" reloadable="true" source="org.eclipse.jst.jee.server:brief10-employees-manager"/><Context docBase="brief10" path="/brief10" reloadable="true" source="org.eclipse.jst.jee.server:brief10"/></Host>
     </Engine>
   </Service>
 </Server>
