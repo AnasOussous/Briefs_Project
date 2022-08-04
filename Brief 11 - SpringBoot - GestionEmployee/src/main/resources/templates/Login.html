@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.2/cosmo/bootstrap.min.css" />
+<style type="text/css">
+    body,td,th{
+        color: #000000;
+    }
+    
+    body{
+        background-color: #F0F0F0;
+    }
+    
+    .style1
+    {
+        font-family: arial;
+        font-size: 14px;
+        padding: 12px;
+        line-height: 25px;
+        border-radius: 4px;
+        text-decoration: none;
+        
+    }
+    
+    .style2
+    {
+        font-family: arial;
+        font-size: 17px;
+        padding: 12px;
+        line-height: 25px;
+        border-radius: 4px;
+        text-decoration: none;
+        
+    }
+    
+    
+</style>
+</head>
+<body>
+ 
+    </head>
+    <body>
+        
+     <div class="container col-md-8 col-md-offset-3" style="overflow: auto">
+		<h1>Login Form</h1>
+		<form action="#" th:action="@{/}" th:object="${user}" method="post">
+
+			<div class="form-group">
+				<label for="uname">Username</label> <input type="text"
+					class="form-control" id="username" placeholder="User Name" th:field="*{username}"
+					name="username" required>
+			</div>
+
+			<div class="form-group">
+				<label for="uname">Password</label> <input type="password"
+					class="form-control" id="password" placeholder="Password" th:field="*{password}"
+					name="password" required>
+			</div>
+
+
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+     
+     
+ 
+</body>
+</html>

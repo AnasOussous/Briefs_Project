@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+
+<div class="txt_field">
+		    <!-- Add hidden form field to handle update -->
+			<input type="hidden" th:field="*{idadmin}" />
+			
+			<input type="text" name="fullname" id="fullname" th:field="*{fullname}" required> 
+			<label>Full Name:</label>
+		</div>
+		<div class="txt_field">
+			<input type="email" name="email" id="email" th:field="*{username}" required>
+		    <label>Email:</label>
+		</div>
+		<div class="txt_field">
+			<input type="text" name="departement" id="departement" th:field="*{password}" required>
+		    <label>Departement:</label>
+		</div>
+		
+		
+		
+</body>
+</html>
