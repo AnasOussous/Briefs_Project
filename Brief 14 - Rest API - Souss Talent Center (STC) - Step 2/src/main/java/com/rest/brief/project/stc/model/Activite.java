@@ -5,11 +5,25 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.Data;
 
-@Data
+
 @Entity
 @Table
 public class Activite {
@@ -37,23 +51,117 @@ public class Activite {
     private String etat;
     
     
-//    @OneToMany(mappedBy="exercice")
-//    private Set<Activite> activites;
-    
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "activite_Id", nullable= false)
-//    private Responsable responsable;
-    
-    @ManyToOne
-	@JoinColumn(name = "responsable_Id")
+    @ManyToOne(targetEntity = Responsable.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "responsable_Id", insertable = false, updatable = false)
+    @JsonIgnore
 	private Responsable responsable;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "activite_id", referencedColumnName = "activite_id")
-    private List<Exercice> exercice;
+    @Column(name = "responsable_Id")
+    private Integer responsableId;
+
+    
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "activite_id", referencedColumnName = "activite_id")
+//    private List<Exercice> exercice;
+    
+    @ManyToOne
+	@JoinColumn(name = "Exercice_Id")
+	private Exercice exercice;
     
     @ManyToMany(mappedBy = "activites")
     private Set<Participant> participant = new HashSet<>();
+
+	public Long getActivite_Id() {
+		return activite_Id;
+	}
+
+	public void setActivite_Id(Long activite_Id) {
+		this.activite_Id = activite_Id;
+	}
+
+	public Date getDateDebut() {
+		return DateDebut;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		DateDebut = dateDebut;
+	}
+
+	public Date getDateFin() {
+		return DateFin;
+	}
+
+	public void setDateFin(Date dateFin) {
+		DateFin = dateFin;
+	}
+
+	public String getTitre() {
+		return titre;
+	}
+
+	public void setTitre(String titre) {
+		this.titre = titre;
+	}
+
+	public String getDescriptif() {
+		return descriptif;
+	}
+
+	public void setDescriptif(String descriptif) {
+		this.descriptif = descriptif;
+	}
+
+	public String getType() {
+		return type;
+	}
+
+	public void setType(String type) {
+		this.type = type;
+	}
+
+	public String getEtat() {
+		return etat;
+	}
+
+	public void setEtat(String etat) {
+		this.etat = etat;
+	}
+
+	
+
+	public Exercice getExercice() {
+		return exercice;
+	}
+
+	public void setExercice(Exercice exercice) {
+		this.exercice = exercice;
+	}
+
+	public Set<Participant> getParticipant() {
+		return participant;
+	}
+
+	public void setParticipant(Set<Participant> participant) {
+		this.participant = participant;
+	}
+
+	public Responsable getResponsable() {
+		return responsable;
+	}
+
+	public void setResponsable(Responsable responsable) {
+		this.responsable = responsable;
+	}
+
+	public Integer getResponsableId() {
+		return responsableId;
+	}
+
+	public void setResponsableId(Integer responsableId) {
+	      this.responsableId = responsableId;
+  }
+
+
     
     
 }

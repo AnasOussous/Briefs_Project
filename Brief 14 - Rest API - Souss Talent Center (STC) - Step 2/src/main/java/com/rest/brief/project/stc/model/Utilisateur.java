@@ -1,5 +1,5 @@
 package com.rest.brief.project.stc.model;
-import java.util.Set;
+
 
 
 import javax.persistence.Column;
@@ -10,9 +10,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
 
 import lombok.Data;
+
+
 @Data
 //@Inheritance(strategy=InheritanceType.JOINED),@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Entity
@@ -20,27 +21,27 @@ import lombok.Data;
 @DiscriminatorColumn(name="utilisateur_type")
 public class Utilisateur {
 	@Id
-    @Column(name = "Id", columnDefinition = "serial")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
+  @Column(name = "Id", columnDefinition = "serial")
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long Id;
 
-    @Column(name = "nom")
-    private String nom;
+  @Column(name = "nom")
+  private String nom;
 
-    @Column(name = "prenom")
-    private String prenom;
+  @Column(name = "prenom")
+  private String prenom;
 
-    @Column(name = "telephone")
-    private String telephone;
+  @Column(name = "telephone")
+  private String telephone;
 
-    @Column(name = "email")
-    private String email;
+  @Column(name = "email")
+  private String email;
 
-    @Column(name = "login")
-    private String login;
+  @Column(name = "login")
+  private String login;
 
-    @Column(name = "pasword")
-    private String pasword;
+  @Column(name = "pasword")
+  private String pasword;
 
-   
+ 
 }
