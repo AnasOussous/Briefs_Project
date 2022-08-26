@@ -8,7 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.rest.brief.project.stc.model.Participant;
-import com.rest.brief.project.stc.repsitory.ParticipantRepository;
+import com.rest.brief.project.stc.exeption.Exeption;
+import com.rest.brief.project.stc.repository.ParticipantRepository;
 
 @Service
 public class ParticipantService {
@@ -38,8 +39,23 @@ public class ParticipantService {
 
 		
 
-		public static void updateParticipant(Participant participant) {
-			// TODO Auto-generated method stub
+		public Participant updateParticipant(Participant participant, Long id) {
+
+			Participant existingParticipant = participantRepository.findById(id)
+					.orElseThrow(() -> new Exeption("Participant", "Id", id));
+
+			existingParticipant.setNom(participant.getNom());
+			existingParticipant.setPrenom(participant.getPrenom());
+			existingParticipant.setLogin(participant.getLogin());
+			existingParticipant.setPasword(participant.getPasword());
+			existingParticipant.setEmail(participant.getEmail());
+			existingParticipant.setTelephone(participant.getTelephone());
+			existingParticipant.setDomaine(participant.getDomaine());
+			existingParticipant.setStructure(participant.getStructure());
+
+			participantRepository.save(existingParticipant);
+
+			return existingParticipant;
 			
 		}
 }

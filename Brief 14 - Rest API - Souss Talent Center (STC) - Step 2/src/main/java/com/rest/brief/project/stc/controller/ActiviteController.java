@@ -1,7 +1,6 @@
 package com.rest.brief.project.stc.controller;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,15 +43,8 @@ import com.rest.brief.project.stc.service.ActviteService;
 	  }
 	  // Update responsable record
 	  @PutMapping("/updateactivite")
-	  public ResponseEntity<String> updateActivite(@RequestBody Activite activite) {  
-	    try {
-	    	activiteService.updateActivite(activite);
-	      return new ResponseEntity<String>(HttpStatus.OK);
-	    }catch(NoSuchElementException ex){
-	      // log the error message
-	      System.out.println(ex.getMessage());
-	      return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
-	    }
+	  public ResponseEntity<Activite> updateActivite(@PathVariable("id") long id, @RequestBody Activite activite) {
+		  return new ResponseEntity<Activite>(activiteService.updateActivite(activite, id), HttpStatus.OK);
 	  }
 	  // Delete responsable record
 	  @DeleteMapping("/{id}")

@@ -1,8 +1,9 @@
 package com.rest.brief.project.stc.model;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,9 +14,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.Data;
 
-@Data
 @Entity
 @Table
 public class Exercice {
@@ -33,18 +32,51 @@ public class Exercice {
     @Column(name = "statut")
     private String statut;
     
-    @OneToMany(mappedBy = "exercice")
-    @JsonIgnore
-	private List<Activite> activite;
-    
-//    @ManyToOne
-//    @JoinColumn(name="exercice_Id", nullable = false)
-//    private Exercice exercice;
+    @OneToMany(mappedBy = "exercice",cascade = CascadeType.ALL)
+	private Set<Activite> activite;
     
     
-//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-//    @JoinColumn(name = "exercice_Id", nullable = false)
-//    private Exercice exercice;
+
+	public Long getExercice_Id() {
+		return exercice_Id;
+	}
+
+	public void setExercice_Id(Long exercice_Id) {
+		this.exercice_Id = exercice_Id;
+	}
+
+	public Date getDateDebut() {
+		return DateDebut;
+	}
+
+	public void setDateDebut(Date dateDebut) {
+		DateDebut = dateDebut;
+	}
+
+	public Date getDateFin() {
+		return DateFin;
+	}
+
+	public void setDateFin(Date dateFin) {
+		DateFin = dateFin;
+	}
+
+	public String getStatut() {
+		return statut;
+	}
+
+	public void setStatut(String statut) {
+		this.statut = statut;
+	}
+
+	public Set<Activite> getActivite() {
+		return activite;
+	}
+
+	public void setActivite(Set<Activite> activite) {
+		this.activite = activite;
+	}
+    
 
   
 }

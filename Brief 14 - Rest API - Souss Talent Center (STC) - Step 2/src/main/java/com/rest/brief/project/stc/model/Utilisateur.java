@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import org.springframework.stereotype.Component;
+
 import lombok.Data;
 
 
@@ -19,6 +21,7 @@ import lombok.Data;
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 @DiscriminatorColumn(name="utilisateur_type")
+@Component
 public class Utilisateur {
 	@Id
   @Column(name = "Id", columnDefinition = "serial")

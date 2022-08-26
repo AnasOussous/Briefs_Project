@@ -5,9 +5,12 @@ package com.rest.brief.project.stc.service;
 
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.stereotype.Service;
-	import com.rest.brief.project.stc.model.Responsable;
-	import com.rest.brief.project.stc.repsitory.ResponsableRespository;
-	import lombok.Data;
+
+import com.rest.brief.project.stc.exeption.Exeption;
+import com.rest.brief.project.stc.model.Responsable;
+import com.rest.brief.project.stc.repository.ResponsableRespository;
+
+import lombok.Data;
 
 	@Data
 	@Service
@@ -36,8 +39,24 @@ package com.rest.brief.project.stc.service;
 	        return responsableRepository.findAll();
 	      }
 
-		public void updateResponsable(Responsable responsable, Long id) {
-			responsableRepository.save(responsable);  
+	    public Responsable updateResponsable(Responsable responsable, long id) {
+			
+			Responsable existingResponsable = responsableRepository.findById(id)
+					.orElseThrow(() -> new Exeption("Responsable", "Id", id));
+
+			existingResponsable.setNom(responsable.getNom());
+			existingResponsable.setPrenom(responsable.getPrenom());
+			existingResponsable.setLogin(responsable.getLogin());
+			existingResponsable.setPasword(responsable.getPasword());
+			existingResponsable.setEmail(responsable.getEmail());
+			existingResponsable.setTelephone(responsable.getTelephone());
+			existingResponsable.setDomaine(responsable.getDomaine());
+			existingResponsable.setType(responsable.getType());
+			existingResponsable.setEtat(responsable.getEtat());
+
+			responsableRepository.save(existingResponsable);
+
+			return existingResponsable;
 		}
 
 		public static List<Responsable> getAllExercice() {

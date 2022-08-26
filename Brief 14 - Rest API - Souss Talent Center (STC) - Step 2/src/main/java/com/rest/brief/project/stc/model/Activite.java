@@ -2,10 +2,8 @@ package com.rest.brief.project.stc.model;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -16,12 +14,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import lombok.Data;
 
 
 @Entity
@@ -58,15 +53,14 @@ public class Activite {
 
     @Column(name = "responsable_Id")
     private Integer responsableId;
-
     
-//    @OneToMany(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "activite_id", referencedColumnName = "activite_id")
-//    private List<Exercice> exercice;
-    
-    @ManyToOne
-	@JoinColumn(name = "Exercice_Id")
+    @ManyToOne(targetEntity = Exercice.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "Exercice_Id", insertable = false, updatable = false)
+    @JsonIgnore
 	private Exercice exercice;
+    
+    @Column(name = "Exercice_Id")
+    private Integer exerciceId;
     
     @ManyToMany(mappedBy = "activites")
     private Set<Participant> participant = new HashSet<>();
@@ -160,6 +154,14 @@ public class Activite {
 	public void setResponsableId(Integer responsableId) {
 	      this.responsableId = responsableId;
   }
+
+	public Integer getExerciceId() {
+		return exerciceId;
+	}
+
+	public void setExerciceId(Integer exerciceId) {
+		this.exerciceId = exerciceId;
+	}
 
 
     

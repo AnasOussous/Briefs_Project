@@ -1,4 +1,4 @@
-package com.rest.brief.project.stc.repsitory;
+package com.rest.brief.project.stc.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

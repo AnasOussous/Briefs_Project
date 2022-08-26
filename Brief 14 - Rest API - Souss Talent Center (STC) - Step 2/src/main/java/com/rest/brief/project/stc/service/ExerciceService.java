@@ -6,10 +6,9 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.rest.brief.project.stc.exeption.Exeption;
 import com.rest.brief.project.stc.model.Exercice;
-import com.rest.brief.project.stc.model.Responsable;
-import com.rest.brief.project.stc.repsitory.ExerciceRepository;
-import com.rest.brief.project.stc.repsitory.ResponsableRespository;
+import com.rest.brief.project.stc.repository.ExerciceRepository;
 @Service 
 public class ExerciceService {
 	 @Autowired
@@ -35,9 +34,19 @@ public class ExerciceService {
 	    	return exerciceRepository.findAll();
 	      }
 
-		public void updateExercice(Exercice exercice) {
+		public Exercice updateExercice(Exercice exercice, Long id) {
 			
-			// TODO Auto-generated method stub
+			Exercice existingExercice = exerciceRepository.findById(id)
+					.orElseThrow(() -> new Exeption("Exercice", "Id", id));
+
+			existingExercice.setDateDebut(exercice.getDateDebut());
+			existingExercice.setDateFin(exercice.getDateFin());
+			existingExercice.setStatut(exercice.getStatut());
+			
+
+			exerciceRepository.save(existingExercice);
+
+			return existingExercice;
 			
 		}
 
