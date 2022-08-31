@@ -14,7 +14,6 @@ import org.springframework.stereotype.Service;
 
 import com.rest.brief.project.stc.model.Utilisateur;
 import com.rest.brief.project.stc.repository.UserRepository;
-import com.rest.brief.project.stc.userDetails.CustomUserDetails;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {

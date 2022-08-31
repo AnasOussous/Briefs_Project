@@ -51,7 +51,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .antMatchers("/paricipant/**").hasAnyAuthority("ADMIN", "RESPONSABLE")
             .antMatchers(HttpMethod.POST,"/exercice/**").hasAnyAuthority("ADMIN", "RESPONSABLE")
             .antMatchers(HttpMethod.GET,"/exercice/**").hasAnyAuthority("ADMIN", "RESPONSABLE","PARTICIPANT")
-            .antMatchers(HttpMethod.POST,"/activite/**").hasAnyAuthority("ADMIN", "RESPONSABLE")
+            .antMatchers("/activite/**").hasAnyAuthority("ADMIN", "RESPONSABLE")
             .antMatchers(HttpMethod.GET,"/activite/**").hasAnyAuthority("ADMIN", "RESPONSABLE","PARTICIPANT")
 
             .anyRequest().authenticated()

@@ -3,7 +3,6 @@ package com.rest.brief.project.stc.userDetails;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
 
 import com.rest.brief.project.stc.model.Role;
 import com.rest.brief.project.stc.model.Utilisateur;
@@ -12,7 +11,6 @@ import net.bytebuddy.implementation.bind.annotation.Super;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
