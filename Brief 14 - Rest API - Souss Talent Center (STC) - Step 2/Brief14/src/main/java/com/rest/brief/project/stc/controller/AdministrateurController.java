@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,10 +24,11 @@ import com.rest.brief.project.stc.service.*;
 @RequestMapping("/admin")
 public class AdministrateurController {
 	/////////////////////////////// responsable///////////////////////////////
-	@Autowired(required = true)
+/*	@Autowired(required = true)
 	ResponsableService ResponsableService;
 
 	// Insert responsable record
+	
 	@PostMapping("/responsable")
 	@ResponseStatus(HttpStatus.CREATED)
 	public Responsable addResponsable(@RequestBody Responsable responsable) {
@@ -62,10 +64,10 @@ public class AdministrateurController {
 			System.out.println(ex.getMessage());
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
-	}
+	}*/
 
 	////////////////////////////////// Activite//////////////////////////////////////////
-	@Autowired(required = true)
+/*	@Autowired(required = true)
 	ActviteService activiteService;
 
 	@PostMapping("/activite")
@@ -103,10 +105,10 @@ public class AdministrateurController {
 			System.out.println(ex.getMessage());
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
-	}
+	}*/
 
 	///// :::::::::::::::::::::::::::::::::::::::::::::::Exercice/////////////////////////
-	@Autowired(required = true)
+/*	@Autowired(required = true)
 	ExerciceService exerciceService;
 
 	// Insert responsable record
@@ -145,10 +147,10 @@ public class AdministrateurController {
 			System.out.println(ex.getMessage());
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
-	}
+	}*/
 
 	//////// :::::Participant:::://////////
-	@Autowired(required = true)
+/*	@Autowired(required = true)
 	ParticipantService participantService;
 
 	// Insert Participant record
@@ -188,16 +190,48 @@ public class AdministrateurController {
 			System.out.println(ex.getMessage());
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
-	}
+	}*/
 	/////////////////////////////////////////////
 
 	@Autowired(required = true)
 	AdministateurService AdministateurService;
 
+	// Insert admin record
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Administrateur addAdministrateur(@RequestBody Administrateur administrateur) {
 		return AdministateurService.saveAdministrateur(administrateur);
 
+	}
+
+	// Fetch all admin records
+	@GetMapping
+	public List<Administrateur> getAllAdministrateurs() {
+		return AdministateurService.getAllAdministrateurs();
+	}
+
+	// Fetch single admin
+	@GetMapping("/{id}")
+	public Optional<Administrateur> getAdministrateurById(@PathVariable("id") Long id) {
+		return AdministateurService.getAdministrateur(id);
+	}
+
+	// Update admin record
+	@PutMapping("/{id}")
+	public ResponseEntity<Administrateur> updateAdministrateur(@PathVariable("id") long id, @RequestBody Administrateur administrateur) {
+		return new ResponseEntity<Administrateur>(AdministateurService.updateAdministrateur(administrateur, id), HttpStatus.OK);
+	}
+
+	// Delete admin record
+	@DeleteMapping("/{id}")
+	public ResponseEntity<String> deleteAdministrateur(@PathVariable Long id) {
+		try {
+			AdministateurService.deleteAdministrateur(id);
+			return new ResponseEntity<String>(HttpStatus.OK);
+		} catch (RuntimeException ex) {
+			// log the error message
+			System.out.println(ex.getMessage());
+			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
+		}
 	}
 }

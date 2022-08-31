@@ -12,8 +12,6 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 
 @Entity
 @Table
@@ -36,7 +34,6 @@ public class Exercice {
 	private Set<Activite> activite;
     
     
-
 	public Long getExercice_Id() {
 		return exercice_Id;
 	}

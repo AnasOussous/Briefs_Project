@@ -17,15 +17,15 @@ public class AdministateurService {
 	 @Autowired
 	    private AdministrateurRepositiry AdministateurRepository;
 
-	    public Optional<Administrateur> getResponsable(final Long id) {
+	    public Optional<Administrateur> getAdministrateur(final Long id) {
 	        return AdministateurRepository.findById(id);
 	    }
 
-	    public Iterable<Administrateur> getResponsable() {
+	    public Iterable<Administrateur> getAdministrateur() {
 	        return AdministateurRepository.findAll();
 	    }
 
-	    public void deleteResponsable(final Long id) {
+	    public void deleteAdministrateur(final Long id) {
 	    	AdministateurRepository.deleteById(id);
 	    }
 
@@ -36,8 +36,8 @@ public class AdministateurService {
 			
 	        return savedAdministrateur;
 	    }
-	    public List<Administrateur> getAllResponsable(){
-	        return getAllResponsable();
+	    public List<Administrateur> getAllAdministrateurs(){
+	        return getAllAdministrateurs();
 	      }
 
 	    public Administrateur updateAdministrateur(Administrateur administrateur, long id) {

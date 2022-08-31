@@ -2,14 +2,10 @@ package com.rest.brief.project.stc.model;
 
 
 
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorColumn;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import java.util.HashSet;
+import java.util.Set;
+
+import javax.persistence.*;
 
 import org.springframework.stereotype.Component;
 
@@ -20,7 +16,7 @@ import lombok.Data;
 //@Inheritance(strategy=InheritanceType.JOINED),@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
-@DiscriminatorColumn(name="utilisateur_type")
+//@DiscriminatorColumn(name="utilisateur_type")
 @Component
 public class Utilisateur {
 	@Id
@@ -45,6 +41,14 @@ public class Utilisateur {
 
   @Column(name = "pasword")
   private String pasword;
+  
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+          name = "user_roles",
+          joinColumns = @JoinColumn(name = "user_id"),
+          inverseJoinColumns = @JoinColumn(name = "role_id")
+  )
+  private Set<Role> roles = new HashSet<>();
 
  
 }
