@@ -4,7 +4,9 @@ package com.rest.brief.project.stc.service;
 	import java.util.Optional;
 
 	import org.springframework.beans.factory.annotation.Autowired;
-	import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import com.rest.brief.project.stc.exeption.Exeption;
 import com.rest.brief.project.stc.model.Responsable;
@@ -18,6 +20,9 @@ import lombok.Data;
 
 	    @Autowired
 	    private ResponsableRespository responsableRepository;
+	    
+	    @Autowired
+	    private PasswordEncoder passwordEncoder;
 
 	    public Optional<Responsable> getResponsable(final Long id) {
 	        return responsableRepository.findById(id);
@@ -32,7 +37,12 @@ import lombok.Data;
 	    }
 
 	    public Responsable saveResponsable(Responsable responsable) {
-	    	Responsable savedResponsable = responsableRepository.save(responsable);
+	    	Responsable savedResponsable;
+
+	    	String password=passwordEncoder.encode(responsable.getPasword());
+	    	responsable.setPasword(password);
+	    	
+	    	savedResponsable = responsableRepository.save(responsable);
 	        return savedResponsable;
 	    }
 	    public List<Responsable> getAllResponsable(){
@@ -47,7 +57,7 @@ import lombok.Data;
 			existingResponsable.setNom(responsable.getNom());
 			existingResponsable.setPrenom(responsable.getPrenom());
 			existingResponsable.setLogin(responsable.getLogin());
-			existingResponsable.setPasword(responsable.getPasword());
+			existingResponsable.setPasword(new BCryptPasswordEncoder().encode(responsable.getPasword()));
 			existingResponsable.setEmail(responsable.getEmail());
 			existingResponsable.setTelephone(responsable.getTelephone());
 			existingResponsable.setDomaine(responsable.getDomaine());

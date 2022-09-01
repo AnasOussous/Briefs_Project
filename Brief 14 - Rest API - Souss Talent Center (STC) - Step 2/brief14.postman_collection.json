@@ -16,7 +16,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nom\":\"kkk\",\r\n    \"domaine\":\"ooo\",\r\n    \"type\":\"com\",\r\n    \"etat\":\"bom\",\r\n    \"prenom\":\"ous\",\r\n    \"telephone\":\"098754\",\r\n    \"email\":\"no@fjkkk.com\",\r\n    \"pasword\":\"1234\",\r\n    \"login\":\"homous\"\r\n    \r\n}",
+							"raw": "{\r\n    \"nom\":\"kkk\",\r\n    \"domaine\":\"ooo\",\r\n    \"type\":\"com\",\r\n    \"etat\":\"bom\",\r\n    \"prenom\":\"ous\",\r\n    \"telephone\":\"098754\",\r\n    \"email\":\"no@fjkkk.com\",\r\n    \"pasword\":\"1234\",\r\n    \"login\":\"admin\"\r\n    \r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -110,7 +110,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "\r\n    {\r\n        \"nom\": \"kkk\",\r\n        \"prenom\": \"ous\",\r\n        \"telephone\": \"098754\",\r\n        \"email\": \"no@fjkkk.com\",\r\n        \"login\": \"homous\",\r\n        \"pasword\": \"1234\",\r\n        \"domaine\": \"home\",\r\n        \"type\": \"yyy\",\r\n        \"etat\": \"bom\",\r\n        \"activite\": []\r\n    }\r\n",
+							"raw": "\r\n{\r\n    \"nom\": \"kkk\",\r\n    \"prenom\": \"ous\",\r\n    \"telephone\": \"098754\",\r\n    \"email\": \"no@fjkkk.com\",\r\n    \"login\": \"admin\",\r\n    \"pasword\": \"123\",\r\n    \"roles\": [\r\n        {\r\n                \"id\": 1,\r\n                \"name\": \"ADMIN\"\r\n            }\r\n    ],\r\n    \"etat\": \"bom\",\r\n    \"id\": 5\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -118,7 +118,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/admin/1",
+							"raw": "http://localhost:8080/admin/5",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -126,7 +126,7 @@
 							"port": "8080",
 							"path": [
 								"admin",
-								"1"
+								"5"
 							]
 						}
 					},
@@ -767,12 +767,12 @@
 					"urlencoded": [
 						{
 							"key": "username",
-							"value": "part",
+							"value": "admin",
 							"type": "text"
 						},
 						{
 							"key": "password",
-							"value": "part",
+							"value": "admin",
 							"type": "text"
 						}
 					]

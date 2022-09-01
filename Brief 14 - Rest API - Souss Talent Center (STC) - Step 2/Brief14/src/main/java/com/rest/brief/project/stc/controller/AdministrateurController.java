@@ -26,6 +26,7 @@ public class AdministrateurController {
 
 	@Autowired(required = true)
 	AdministateurService AdministateurService;
+	
 
 	// Insert admin record
 	@PostMapping
@@ -34,6 +35,7 @@ public class AdministrateurController {
 		return AdministateurService.saveAdministrateur(administrateur);
 
 	}
+
 
 	// Fetch all admin records
 	@GetMapping
