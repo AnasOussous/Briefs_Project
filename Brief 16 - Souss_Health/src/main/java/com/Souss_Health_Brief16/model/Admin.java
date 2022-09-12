@@ -5,7 +5,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "admins")
-public class Admin extends User{
+public class Admin extends User {
 
 	public Admin() {
 		super();
