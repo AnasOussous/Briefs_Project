@@ -1,27 +1,33 @@
 package com.Souss_Health_Brief16.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "users")
+@Inheritance(strategy=InheritanceType.JOINED)
 public class User {
 	@Id
-	@Column(name = "Id", columnDefinition = "serial")
+	@Column(columnDefinition = "serial")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 
 	private String nom;
-
 	private String prenom;
-
 	private String telephone;
-
 	private String email;
-
 	private String username;
-
 	private String password;
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	  @JoinTable(
+	          name = "user_roles",
+	          joinColumns = @JoinColumn(name = "users_id"),
+	          inverseJoinColumns = @JoinColumn(name = "roles_id")
+	  )
+	  private Set<Role> roles = new HashSet<>();
 
 	public Long getId() {
 		return Id;
@@ -78,7 +84,11 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
+	public User() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 
 }
