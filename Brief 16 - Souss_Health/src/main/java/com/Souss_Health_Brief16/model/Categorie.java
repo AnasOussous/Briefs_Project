@@ -17,6 +17,10 @@ public class Categorie {
 	
 	@OneToMany(mappedBy = "categories",cascade = CascadeType.ALL)
 	private Set<Produit> produits;
+	
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "users_Id")
+	private User users;
 
 	public Long getId() {
 		return Id;

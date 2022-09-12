@@ -23,6 +23,10 @@ public class Produit {
 	@JoinColumn(name = "categories_Id")
 	private Categorie categories;
 	
+	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+	@JoinColumn(name = "users_Id")
+	private User users;
+	
 	@OneToMany(mappedBy = "produits", cascade = CascadeType.ALL)
     private Set<Command> Commands = new HashSet<>();
 	

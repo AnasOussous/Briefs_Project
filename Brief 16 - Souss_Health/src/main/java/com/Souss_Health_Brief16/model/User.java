@@ -28,6 +28,14 @@ public class User {
 	          inverseJoinColumns = @JoinColumn(name = "roles_id")
 	  )
 	  private Set<Role> roles = new HashSet<>();
+	
+	
+	
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<Produit> produits = new HashSet<>();
+	
+	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
+    private Set<Categorie> categories = new HashSet<>();
 
 	public Long getId() {
 		return Id;
