@@ -25,32 +25,21 @@ public class Command {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long Id;
 
-	
-	
-	
 //	@Temporal(TemporalType.DATE)
 //	@JsonFormat(pattern = "yyyy-MM-dd")
 //	private LocalDateTime dateCommand;
-	
-	
-	
-	
-	
+
+	// Current Date
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(nullable = false)
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-	private Date  dateCommand;
+	private Date dateCommand;
 
 	@PrePersist
 	private void onCreate() {
 		dateCommand = new Date();
 	}
-	
-	
-	
-	
-	
-	
+
 	private Double total;
 
 	// @ManyToOne(fetch = FetchType.LAZY)
@@ -65,10 +54,9 @@ public class Command {
 	@Column(name = "client_id")
 	private Integer clientId;
 
-	   
-	//    @ManyToOne(fetch = FetchType.LAZY)
-	//    @JoinColumn(name = "produits_id")
-	//    private Produit produits;
+	// @ManyToOne(fetch = FetchType.LAZY)
+	// @JoinColumn(name = "produits_id")
+	// private Produit produits;
 
 	@ManyToOne(targetEntity = Produit.class, fetch = FetchType.LAZY)
 	@JoinColumn(name = "produits_id", insertable = false, updatable = false)
@@ -102,8 +90,6 @@ public class Command {
 		this.produits = produits;
 	}
 
-	
-
 	public Double getTotal() {
 		return total;
 	}
@@ -127,8 +113,6 @@ public class Command {
 	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
-	
-	
 
 	public Date getDateCommand() {
 		return dateCommand;
@@ -143,14 +127,4 @@ public class Command {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Date getDateCommand() {
-		return dateCommand;
-	}
-
-	public void setDateCommand(Date dateCommand) {
-		this.dateCommand = dateCommand;
-	}
-
-	
-	
 }
