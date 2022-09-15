@@ -8,17 +8,17 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import com.Souss_Health_Brief16.model.User;
-import com.Souss_Health_Brief16.repository.UserRepository;
+import com.Souss_Health_Brief16.model.Client;
+import com.Souss_Health_Brief16.repository.ClientRepository;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,66 +28,75 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class UserController {
 	
-	@Autowired
-	  private UserRepository userRepository;
+	  @Autowired
+	  private ClientRepository clientRepository;
+	  
+	  
 	
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/users")
-	  public List<User> getAllUsers() {
-	    return userRepository.findAll();
+	  public List<Client> getAllClients() {
+	    return clientRepository.findAll();
 	  }
 	
 	
+	
+	@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/users/{id}")
-	  public ResponseEntity<User> getUsersById(@PathVariable(value = "id") Long userId)
+	  public ResponseEntity<Client> getClientsById(@PathVariable(value = "id") Long id)
 	      throws ResourceNotFoundException {
-	    User user =
-	        userRepository
-	            .findById(userId)
-	            .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
-	    return ResponseEntity.ok().body(user);
+	    Client Client =
+	        clientRepository
+	            .findById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("Client not found on :: " + id));
+	    return ResponseEntity.ok().body(Client);
 	  }
 	
 	
-	@PostMapping("/users")
-	  public User createUser(@Valid @RequestBody User user) {
-	    return userRepository.save(user);
-	  }
+				//	@PostMapping("/users")
+				//	  public Client createClient( @RequestBody Client Client) {
+				//	    return clientRepository.save(Client);
+				//	  }
 	
 	
+	@PreAuthorize("hasRole('ADMIN')")
 	 @PutMapping("/users/{id}")
-	  public ResponseEntity<User> updateUser(
-	      @PathVariable(value = "id") Long userId, @Valid @RequestBody User userDetails)
+	  public ResponseEntity<Client> updateClient(
+	      @PathVariable(value = "id") Long id, @Valid @RequestBody Client ClientDetails)
 	      throws ResourceNotFoundException {
 
-	    User user =
-	        userRepository
-	            .findById(userId)
-	            .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
+	    Client Client =
+	        clientRepository
+	            .findById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("Client not found on :: " + id));
 	    
-       user.setNom(userDetails.getNom());
-       user.setPrenom(userDetails.getPrenom());
-       user.setPassword(userDetails.getPassword());
-       user.setEmail(userDetails.getEmail());
-       user.setTelephone(userDetails.getTelephone());
-       user.setUsername(userDetails.getUsername());
+       Client.setNom(ClientDetails.getNom());
+       Client.setPrenom(ClientDetails.getPrenom());
+       Client.setPassword(ClientDetails.getPassword());
+       Client.setEmail(ClientDetails.getEmail());
+       Client.setTelephone(ClientDetails.getTelephone());
+       Client.setUsername(ClientDetails.getUsername());
 	    
 	   
-	    final User updatedUser = userRepository.save(user);
-	    return ResponseEntity.ok(updatedUser);
+	    final Client updatedClient = clientRepository.save(Client);
+	    return ResponseEntity.ok(updatedClient);
 	  }
-	 
-	 @DeleteMapping("/user/{id}")
-	  public Map<String, Boolean> deleteUser(@PathVariable(value = "id") Long userId) throws Exception {
-	    User user =
-	        userRepository
-	            .findById(userId)
-	            .orElseThrow(() -> new ResourceNotFoundException("User not found on :: " + userId));
+	
+	 @PreAuthorize("hasRole('ADMIN')")
+	 @DeleteMapping("/users/{id}")
+	  public Map<String, Boolean> deleteClient(@PathVariable(value = "id") Long id) throws Exception {
+	    Client Client =
+	        clientRepository
+	            .findById(id)
+	            .orElseThrow(() -> new ResourceNotFoundException("Client not found on :: " + id));
 
-	    userRepository.delete(user);
+	    clientRepository.delete(Client);
 	    Map<String, Boolean> response = new HashMap<>();
 	    response.put("deleted", Boolean.TRUE);
 	    return response;
 	  }
+	
+	 
 
 }

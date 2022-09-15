@@ -4,6 +4,8 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 @Entity
 @Table(name = "categories")
@@ -18,10 +20,19 @@ public class Categorie {
 	@OneToMany(mappedBy = "categories",cascade = CascadeType.ALL)
 	private Set<Produit> produits;
 	
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "users_Id")
-	private User users;
+//	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+//	@JoinColumn(name = "users_Id")
+//	private User users;
 
+
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "users_Id", insertable = false, updatable = false)
+    @JsonIgnore
+    private User users;
+
+    @Column(name = "users_Id")
+    private Integer usersId;
+    
 	public Long getId() {
 		return Id;
 	}
@@ -36,6 +47,33 @@ public class Categorie {
 
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+	
+	
+	public Set<Produit> getProduits() {
+		return produits;
+	}
+
+	public void setProduits(Set<Produit> produits) {
+		this.produits = produits;
+	}
+
+	public User getUsers() {
+		return users;
+	}
+
+	public void setUsers(User users) {
+		this.users = users;
+	}
+	
+	
+
+	public Integer getUsersId() {
+		return usersId;
+	}
+
+	public void setUsersId(Integer usersId) {
+		this.usersId = usersId;
 	}
 
 	public Categorie() {

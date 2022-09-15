@@ -25,6 +25,11 @@ public class Client extends User{
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	public Client(String nom, String prenom, String telephone, String email, String username, String password) {
+		super(nom, prenom, telephone, email, username, password);
+		//TODO Auto-generated constructor stub
+	}
 	
 	
 }

@@ -1,8 +1,25 @@
 package com.Souss_Health_Brief16.model;
 
-import javax.persistence.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-import java.util.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "produits")
@@ -16,16 +33,41 @@ public class Produit {
 	private String nom;
 	private String description;
 	private Double prix;
+	
+	@Temporal(TemporalType.DATE)
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dateExpiration;
+	
 	private int QuantiteStock;
 	
-	@ManyToOne(targetEntity = Categorie.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "categories_Id")
-	private Categorie categories;
+//	@ManyToOne(targetEntity = Categorie.class)
+//	@JoinColumn(name = "categories_Id")
+//	private Categorie categories;
 	
-	@ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-	@JoinColumn(name = "users_Id")
-	private User users;
+	@ManyToOne(targetEntity = Categorie.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "categories_Id", insertable = false, updatable = false)
+    @JsonIgnore
+    private Categorie categories;
+
+	
+	
+    @Column(name = "categories_Id")
+    private Integer categorieId;
+	
+//	@ManyToOne(targetEntity = User.class)
+//	@JoinColumn(name = "users_Id")
+//	private User users;
+    
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
+    @JoinColumn(name = "users_Id", insertable = false, updatable = false)
+    @JsonIgnore
+    private User users;
+
+    @Column(name = "users_Id")
+    private Integer usersId;
+    
+    
+    
 	
 	@OneToMany(mappedBy = "produits", cascade = CascadeType.ALL)
     private Set<Command> Commands = new HashSet<>();
@@ -65,6 +107,40 @@ public class Produit {
 	}
 	public void setQuantiteStock(int quantiteStock) {
 		QuantiteStock = quantiteStock;
+	}
+	
+	
+	public Categorie getCategories() {
+		return categories;
+	}
+	public void setCategories(Categorie categories) {
+		this.categories = categories;
+	}
+	public User getUsers() {
+		return users;
+	}
+	public void setUsers(User users) {
+		this.users = users;
+	}
+	public Set<Command> getCommands() {
+		return Commands;
+	}
+	public void setCommands(Set<Command> commands) {
+		Commands = commands;
+	}
+	
+	
+	public Integer getCategorieId() {
+		return categorieId;
+	}
+	public void setCategorieId(Integer categorieId) {
+		this.categorieId = categorieId;
+	}
+	public Integer getUsersId() {
+		return usersId;
+	}
+	public void setUsersId(Integer usersId) {
+		this.usersId = usersId;
 	}
 	public Produit() {
 		super();
