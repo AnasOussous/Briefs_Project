@@ -127,6 +127,16 @@ public class Command {
 	public void setClientId(Integer clientId) {
 		this.clientId = clientId;
 	}
+	
+	
+
+	public Date getDateCommand() {
+		return dateCommand;
+	}
+
+	public void setDateCommand(Date dateCommand) {
+		this.dateCommand = dateCommand;
+	}
 
 	public Command() {
 		super();
