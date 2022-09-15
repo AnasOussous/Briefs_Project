@@ -143,4 +143,14 @@ public class Command {
 		// TODO Auto-generated constructor stub
 	}
 
+	public Date getDateCommand() {
+		return dateCommand;
+	}
+
+	public void setDateCommand(Date dateCommand) {
+		this.dateCommand = dateCommand;
+	}
+
+	
+	
 }
