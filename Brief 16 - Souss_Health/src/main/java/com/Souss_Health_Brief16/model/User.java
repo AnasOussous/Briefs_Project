@@ -50,11 +50,6 @@ public class User {
 	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "users_id"), inverseJoinColumns = @JoinColumn(name = "roles_id"))
 	private Set<Role> roles = new HashSet<>();
 
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	private Set<Produit> produits = new HashSet<>();
-
-	@OneToMany(mappedBy = "users", cascade = CascadeType.ALL)
-	private Set<Categorie> categories = new HashSet<>();
 
 	public User() {
 		super();

@@ -24,7 +24,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Table(name = "produits")
 public class Produit {
-	
+
 	@Id
 	@Column(name = "Id", columnDefinition = "serial")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,118 +33,104 @@ public class Produit {
 	private String nom;
 	private String description;
 	private Double prix;
-	
+
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(pattern = "yyyy-MM-dd")
 	private Date dateExpiration;
-	
+
 	private int QuantiteStock;
-	
+
 //	@ManyToOne(targetEntity = Categorie.class)
 //	@JoinColumn(name = "categories_Id")
 //	private Categorie categories;
-	
+
 	@ManyToOne(targetEntity = Categorie.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "categories_Id", insertable = false, updatable = false)
-    @JsonIgnore
-    private Categorie categories;
+	@JoinColumn(name = "categories_Id", insertable = false, updatable = false)
+	@JsonIgnore
+	private Categorie categories;
 
+	@Column(name = "categories_Id")
+	private Integer categorieId;
 	
-	
-    @Column(name = "categories_Id")
-    private Integer categorieId;
-	
-//	@ManyToOne(targetEntity = User.class)
-//	@JoinColumn(name = "users_Id")
-//	private User users;
-    
-    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_Id", insertable = false, updatable = false)
-    @JsonIgnore
-    private User users;
 
-    @Column(name = "users_Id")
-    private Integer usersId;
-    
-    
-    
-	
 	@OneToMany(mappedBy = "produits", cascade = CascadeType.ALL)
-    private Set<Command> Commands = new HashSet<>();
-	
+	private Set<Command> Commands = new HashSet<>();
+
 	public Long getId() {
 		return Id;
 	}
+
 	public void setId(Long id) {
 		Id = id;
 	}
+
 	public String getNom() {
 		return nom;
 	}
+
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public Double getPrix() {
 		return prix;
 	}
+
 	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
+
 	public Date getDateExpiration() {
 		return dateExpiration;
 	}
+
 	public void setDateExpiration(Date dateExpiration) {
 		this.dateExpiration = dateExpiration;
 	}
+
 	public int getQuantiteStock() {
 		return QuantiteStock;
 	}
+
 	public void setQuantiteStock(int quantiteStock) {
 		QuantiteStock = quantiteStock;
 	}
-	
-	
+
 	public Categorie getCategories() {
 		return categories;
 	}
+
 	public void setCategories(Categorie categories) {
 		this.categories = categories;
 	}
-	public User getUsers() {
-		return users;
-	}
-	public void setUsers(User users) {
-		this.users = users;
-	}
+
 	public Set<Command> getCommands() {
 		return Commands;
 	}
+
 	public void setCommands(Set<Command> commands) {
 		Commands = commands;
 	}
-	
-	
+
 	public Integer getCategorieId() {
 		return categorieId;
 	}
+
 	public void setCategorieId(Integer categorieId) {
 		this.categorieId = categorieId;
 	}
-	public Integer getUsersId() {
-		return usersId;
-	}
-	public void setUsersId(Integer usersId) {
-		this.usersId = usersId;
-	}
+
 	public Produit() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
+
 }
