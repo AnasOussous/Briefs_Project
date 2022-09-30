@@ -1,0 +1,41 @@
+<div class="row">
+    <div class="col-md-5 mx-auto">
+        <form (ngSubmit)="onSubmit()">
+            <!-- <div class="form-group">
+              <label htmlFor="sellorrent">For Sell/Rent</label>
+              <select [(ngModel)]={product.sellorrent} name="sellorrent" name="sellorrent" class="form-control">
+                  <option selected>Select Sell/Rent</option>
+                  <option [(ngModel)]="false">Sell</option>
+                  <option [(ngModel)]="true">Rent</option>
+              </select>
+          </div> -->
+            <!-- <div class="form-group">
+                <label htmlFor="photo" class="text-muted">Image</label>
+                <input multiple  type="file" name='photo' class="form-control" />
+          </div> -->
+            <div class="form-group">
+                <label htmlFor="name" class="text-muted">Name</label>
+                <input [(ngModel)]="product.nom" name="name" type="text" class="form-control" />
+            </div>
+
+            <div class="form-group">
+                <label htmlFor="description">Description</label>
+                <textarea [(ngModel)]="product.description" name="description" name="description" cols="30" rows="10"
+                    class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <label htmlFor="price">price</label>
+                <input [(ngModel)]="product.prix" type="number" name="price" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label htmlFor="Beds" class="text-muted">Beds</label>
+                <input [(ngModel)]="product.dateExpiration" type="Date" name="beds" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label htmlFor="Baths" class="text-muted">Baths</label>
+                <input [(ngModel)]="product.QuantiteStock" type="text" name="baths" class="form-control" />
+            </div>
+            <button type="submit" class="btn btn-outline-primary">Update Listing</button>
+        </form>
+    </div>
+</div>

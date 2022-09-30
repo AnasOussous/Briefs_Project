@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,70 +23,63 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/api")
 public class ProduitController {
-	
-			  @Autowired
-			  private ProduitsRepository produitsRepository;
-              
-			  @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
-			  @GetMapping("/produits")     
-			  public List<Produit> getAllProduits() {
-			    return produitsRepository.findAll();
-			  }
-			  
-			  @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
-			  @GetMapping("/produits/{id}")
-			  public ResponseEntity<Produit> getProduitsById(@PathVariable(value = "id") Long id)
-			      throws ResourceNotFoundException {
-				  Produit produit =
-						  produitsRepository
-			            .findById(id)
-			            .orElseThrow(() -> new ResourceNotFoundException("Produit not found on :: " + id));
-			    return ResponseEntity.ok().body(produit);
-			  }
-			  
-			  @PreAuthorize("hasRole('ADMIN')")
-			  @PostMapping("/produits") 
-			  public Produit createProduit(@RequestBody Produit produit) {
-			    return produitsRepository.save(produit);
-			  }
-			  
-			  
-			  @PreAuthorize("hasRole('ADMIN')")
-			  @PutMapping("/produits/{id}")
-			  public ResponseEntity<Produit> updateProduit(
-			      @PathVariable(value = "id") Long id, @Valid @RequestBody Produit produitDetails)
-			      throws ResourceNotFoundException {
 
-				  Produit produit =
-						  produitsRepository
-			            .findById(id)
-			            .orElseThrow(() -> new ResourceNotFoundException("Produit not found on :: " + id));
-				  
-				  produit.setNom(produitDetails.getNom());
-				  produit.setDescription(produitDetails.getDescription());
-				  produit.setDateExpiration(produitDetails.getDateExpiration());
-				  produit.setPrix(produitDetails.getPrix());
-				  produit.setQuantiteStock(produitDetails.getQuantiteStock());
-				 
-		       
-			    final Produit updatedProduit = produitsRepository.save(produit);
-			    return ResponseEntity.ok(updatedProduit);
-			  }
-			  
-			  @PreAuthorize("hasRole('ADMIN')")
-			  @DeleteMapping("/produits/{id}")      // done !!!!!!!!
-			  public Map<String, Boolean> deleteProduit(@PathVariable(value = "id") Long id) throws Exception {
-				  Produit produit =
-						  produitsRepository
-			            .findById(id)
-			            .orElseThrow(() -> new ResourceNotFoundException("Produit not found on :: " + id));
+	@Autowired
+	private ProduitsRepository produitsRepository;
 
-				produitsRepository.delete(produit);
-			    Map<String, Boolean> response = new HashMap<>();
-			    response.put("deleted", Boolean.TRUE);
-			    return response;
-			  }
+//	@PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
+	@GetMapping("/produits")
+	public List<Produit> getAllProduits() {
+		return produitsRepository.findAll();
+	}
+
+//	@PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
+	@GetMapping("/produits/{id}")
+	public ResponseEntity<Produit> getProduitsById(@PathVariable(value = "id") Long id)
+			throws ResourceNotFoundException {
+		Produit produit = produitsRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Produit not found on :: " + id));
+		return ResponseEntity.ok().body(produit);
+	}
+
+//	@PreAuthorize("hasRole('ADMIN')")
+	@PostMapping("/produits")
+	public Produit createProduit(@RequestBody Produit produit) {
+		return produitsRepository.save(produit);
+	}
+
+//	@PreAuthorize("hasRole('ADMIN')")
+	@PutMapping("/produits/{id}")
+	public ResponseEntity<Produit> updateProduit(@PathVariable(value = "id") Long id,
+			@Valid @RequestBody Produit produitDetails) throws ResourceNotFoundException {
+
+		Produit produit = produitsRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Produit not found on :: " + id));
+
+		produit.setNom(produitDetails.getNom());
+		produit.setDescription(produitDetails.getDescription());
+		produit.setDateExpiration(produitDetails.getDateExpiration());
+		produit.setPrix(produitDetails.getPrix());
+		produit.setQuantiteStock(produitDetails.getQuantiteStock());
+		produit.setCategorieId(produitDetails.getCategorieId());
+
+		final Produit updatedProduit = produitsRepository.save(produit);
+		return ResponseEntity.ok(updatedProduit);
+	}
+
+//	@PreAuthorize("hasRole('ADMIN')")
+	@DeleteMapping("/produits/{id}") // done !!!!!!!!
+	public Map<String, Boolean> deleteProduit(@PathVariable(value = "id") Long id) throws Exception {
+		Produit produit = produitsRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Produit not found on :: " + id));
+
+		produitsRepository.delete(produit);
+		Map<String, Boolean> response = new HashMap<>();
+		response.put("deleted", Boolean.TRUE);
+		return response;
+	}
 }

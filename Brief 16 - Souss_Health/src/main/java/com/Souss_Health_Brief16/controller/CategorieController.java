@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+@CrossOrigin(origins = "http://localhost:4200", maxAge = 3600, allowCredentials="true")
 @RestController
 @RequestMapping("/api")
 public class CategorieController {
@@ -31,13 +33,13 @@ public class CategorieController {
 			  @Autowired
 			  private CategorieRepository categorieRepository;
 			  
-			  @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
+//			  @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
 			  @GetMapping("/categories")    
 			  public List<Categorie> getAllCategories() {
 			    return categorieRepository.findAll();
 			  }
 			  
-			  @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
+//			  @PreAuthorize("hasRole('ADMIN') or hasRole('CLIENT')")
 			  @GetMapping("/categories/{id}")
 			  public ResponseEntity<Categorie> getCategoriesById(@PathVariable(value = "id") Long id)
 			      throws ResourceNotFoundException {
@@ -48,13 +50,13 @@ public class CategorieController {
 			    return ResponseEntity.ok().body(categorie);
 			  }
 			  
-			  @PreAuthorize("hasRole('ADMIN')")
+//			  @PreAuthorize("hasRole('ADMIN')")
 			  @PostMapping("/categories")
 			  public Categorie createCategorie(@Valid @RequestBody Categorie categorie) {
 			    return categorieRepository.save(categorie);
 			  }
 			  
-			  @PreAuthorize("hasRole('ADMIN')")
+//			  @PreAuthorize("hasRole('ADMIN')")
 			  @PutMapping("/categories/{id}")
 			  public ResponseEntity<Categorie> updateCategorie(
 			      @PathVariable(value = "id") Long id, @Valid @RequestBody Categorie categorieDetails)
@@ -73,7 +75,7 @@ public class CategorieController {
 			    return ResponseEntity.ok(updatedCategorie);
 			  }
 			  
-			  @PreAuthorize("hasRole('ADMIN')")
+//			  @PreAuthorize("hasRole('ADMIN')")
 			  @DeleteMapping("/categories/{id}")
 			  public Map<String, Boolean> deleteCategorie(@PathVariable(value = "id") Long id) throws Exception {
 				  Categorie categorie =
@@ -86,9 +88,6 @@ public class CategorieController {
 			    response.put("deleted", Boolean.TRUE);
 			    return response;
 			  }
-			  
-			  
-			  
 			  
 
 }
